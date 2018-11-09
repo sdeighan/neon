@@ -1,0 +1,422 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import '~@angular/material/_theming';
+@import 'themes/neon-green-theme.scss';
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(assets/Material/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2); /* For IE6-8 */
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(assets/Material/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2'),
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.mat-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.mat-dark.mat-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.mat-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.mat-light.mat-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* General layout styles. */
+.flex {
+    display: flex;
+}
+
+.center {
+    align-items: center;
+}
+
+.fill-remaining {
+    flex: 1 1 auto;
+}
+
+/* Angular2-Grid Overrides */
+.grid {
+    background-color: #fafafa !important;
+    position: relative;
+}
+
+.grid-item {
+    border-radius: 5px;
+    background-color: inherit !important;
+}
+
+.grid-item.moving {
+    z-index: z-index + 1;
+}
+
+.placeholder {
+    position: absolute;
+}
+
+.grid-placeholder {
+    background-color: gray;
+    border: 2px dotted black;
+    opacity: 0.3;
+    z-index: 10;
+}
+
+.icon-container {
+    justify-content: center;
+    display: flex;
+}
+
+.neon-svg-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+}
+
+.neon-icon-navBar {
+    display: inline-block;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+}
+
+/* Loading Spinner */
+.loading-overlay {
+    position: absolute;
+    width: 100%;
+    /* Subtract the height of the visualization toolbar. */
+    height: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.1);
+    z-index: 100;
+}
+
+.not-loading-overlay {
+    position: absolute;
+    display: none;
+}
+
+/* Angular Material Overrides */
+.mat-button,
+.mat-flat-button,
+.mat-raised-button,
+.mat-stroked-button {
+    border-radius: 5px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 20px !important;
+    height: 30px !important;
+    min-width: unset !important;
+    padding: 5px 10px !important;
+
+    > * {
+        vertical-align: bottom !important;
+    }
+
+    &.neon-button-large {
+        font-size: 24px !important;
+        line-height: 25px !important;
+        height: 35px !important;
+    }
+
+    &.neon-button-small {
+        font-size: 12px !important;
+        line-height: 15px !important;
+        height: 25px !important;
+    }
+
+    &:not([disabled]) {
+        &:hover {
+            background-color: $accent-bright !important;
+        }
+    }
+}
+
+.mat-button-focus-overlay {
+    /* Hide the focus overlay because it sticks. */
+    opacity: 0 !important;
+}
+
+.mat-button-toggle-group {
+    border-radius: 10px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+
+    .mat-button-toggle {
+        &:first-child {
+            border-radius: 10px 0 0 10px !important;
+        }
+
+        &:last-child {
+            border-radius: 0 10px 10px 0 !important;
+        }
+
+        &:hover:not(.mat-button-toggle-checked) {
+            background-color: $accent-bright !important;
+        }
+    }
+
+    .mat-button-toggle-label-content {
+        display: block !important;
+        height: 20px !important;
+        line-height: 20px !important;
+        padding: 5px 10px !important;
+    }
+
+    &.neon-button-toggle-group-large {
+        font-size: 24px !important;
+
+        .mat-button-toggle-label-content {
+            height: 25px !important;
+            line-height: 25px !important;
+            padding: 5px 10px !important;
+        }
+    }
+
+    &.neon-button-toggle-group-small {
+        font-size: 12px !important;
+
+        .mat-button-toggle-label-content {
+            height: 15px !important;
+            line-height: 15px !important;
+            padding: 5px 10px !important;
+        }
+    }
+}
+
+.mat-dialog-container {
+    padding: 10px !important;
+}
+
+.mat-form-field {
+    .mat-form-field-infix {
+        border-top: 15px solid transparent !important;
+        font-size: 14px !important;
+        height: 15px !important;
+        line-height: 15px !important;
+        padding: 5px 0 !important;
+        width: unset;
+    }
+
+    .mat-form-field-underline {
+        bottom: 0 !important;
+    }
+
+    .mat-form-field-wrapper {
+        padding: 0 !important;
+    }
+
+    &.neon-form-field-large {
+        .mat-form-field-infix {
+            font-size: 18px !important;
+            height: 20px !important;
+            line-height: 20px !important;
+        }
+    }
+
+    &.neon-form-field-flex-5 {
+        padding: 0 5px;
+        width: calc(20% - 10px) !important;
+    }
+}
+
+.mat-icon-button {
+    line-height: 20px !important;
+    height: 30px !important;
+    width: 30px !important;
+    margin: 0 !important;
+    padding: 5px !important;
+
+    &.neon-icon-button-large {
+        line-height: 30px !important;
+        height: 40px !important;
+        width: 40px !important;
+    }
+
+    &.neon-icon-button-small {
+        line-height: 16px !important;
+        height: 16px !important;
+        width: 16px !important;
+        margin: 0 5px !important;
+        padding: 0 !important;
+    }
+
+    &:not([disabled]) {
+        &.active,
+        &:hover {
+            color: $accent-bright !important;
+        }
+    }
+}
+
+.mat-icon {
+    font-size: 20px !important;
+    line-height: 20px !important;
+    height: 20px !important;
+    width: 20px !important;
+    vertical-align: bottom !important;
+
+    &.neon-icon-large {
+        font-size: 30px !important;
+        line-height: 30px !important;
+        height: 30px !important;
+        width: 30px !important;
+    }
+
+    &.neon-icon-small {
+        font-size: 16px !important;
+        line-height: 16px !important;
+        height: 16px !important;
+        width: 16px !important;
+    }
+
+    &:not([disabled]) {
+        &.active {
+            color: $accent-bright !important;
+        }
+    }
+}
+
+.mat-list,
+.mat-nav-list,
+.mat-selection-list {
+    padding-top: 0 !important;
+}
+
+.mat-list-item {
+    height: 40px !important;
+
+    &.mat-2-line {
+      height: 50px !important;
+    }
+}
+
+.mat-list-item-content {
+    padding: 5px 10px !important;
+}
+
+.mat-menu-content {
+    padding: 0 !important;
+}
+
+.mat-menu-item,
+.mat-option {
+    line-height: 20px !important;
+    height: 30px !important;
+    padding: 5px 10px !important;
+}
+
+.mat-nav-list .mat-list-item-content {
+    padding: 5px 20px !important;
+}
+
+.mat-sidenav {
+    > .mat-card {
+        padding: 20px !important;
+    }
+}
+
+.mat-slider {
+    padding: 0 !important;
+}
+
+.mat-slider-horizontal {
+    height: 60px !important;
+    min-width: unset !important;
+
+    .mat-slider-wrapper {
+        /* Position the slider near the bottom and save 40px for the thumb-label. */
+        top: 49px !important;
+        /* Add the same margin to the left and right. */
+        left: 10px !important;
+        right: 10px !important;
+    }
+}
+
+.mat-tab-label {
+    height: 30px !important;
+    min-width: unset !important;
+    padding: 5px 10px !important;
+}
+
+.mat-toolbar {
+    font-weight: 600 !important;
+    line-height: 30px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 5px 10px !important;
+    border-bottom: 5px solid $accent-bright !important;
+
+    &.neon-toolbar-large {
+        height: 50px !important;
+        line-height: 40px !important;
+        min-height: 50px !important;
+    }
+
+    &.neon-toolbar-thin {
+        padding: 5px !important;
+    }
+
+    &.neon-toolbar-wide {
+        padding: 5px 20px !important;
+    }
+}
+
+.simpleSnackBar {
+    background-color: rgba(0, 0, 0, 0.54) !important;
+    
+
+    .mat-simple-snackbar-action {
+        position: absolute; 
+        top: 0;
+        right: 0;
+        font-weight: 800;
+    }
+
+    .mat-simple-snackbar{
+        justify-content: center;
+    }
+}
