@@ -1,0 +1,318 @@
+/*
+ * Copyright 2016 Next Century Corporation
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+@import '../base-neon-component/base-neon.component.scss';
+
+.table-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+
+    .table {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+
+    .column-selector-header {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.4em;
+        border: 1px solid mat-color($accent);
+    }
+
+    .column-selector-close {
+        font-size: 12px;
+    }
+
+    .column-selector {
+        position: relative;
+        height: 100%;
+        width: 300px;
+        bottom: 0;
+        top: 0;
+        overflow-y: hidden;
+        box-shadow: 1px 1px 1px 1px #888888;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .column-selector-list {
+        position: relative;
+        bottom: 0;
+        overflow-y: scroll;
+        user-select: none;
+    }
+}
+
+.dragView {
+    position: fixed;
+}
+
+.datatable-filter-container {
+    @extend %filter-container-shared;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+
+    .datatable-filter-reset {
+        @extend %filter-reset-shared;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        overflow: hidden;
+
+        .datatable-filter-label {
+            @extend %filter-label-shared;
+        }
+
+        mat-icon {
+            @extend %filter-icon-shared;
+        }
+    }
+}
+
+/deep/ .datatable-row-even {
+    background-color: #fafafa;
+}
+
+/deep/ .datatable-header-inner {
+    border-right: 1px solid $black-87-opacity;
+}
+
+/deep/ .datatable-header-cell {
+    /* Background fade from $white to $accent. */
+    background: linear-gradient(#fafafa, #e6e7e8);
+    border-bottom: 1px solid $black-87-opacity;
+    border-right: 1px solid $black-87-opacity;
+    line-height: 20px !important;
+    height: 30px;
+    text-align: center;
+}
+
+/* This is only needed if the table is reorderable. */
+/deep/ .datatable-header-cell.longpress {
+    background: linear-gradient(#ddd, #b3b3b3);
+    border: 1px dashed $black-87-opacity;
+    z-index: 100;
+}
+
+/deep/ .datatable-header-cell>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+/deep/ .datatable-header-cell-wrapper {
+    padding: 5px;
+    width: 100%;
+}
+
+/deep/ .sort-active .datatable-header-cell-wrapper {
+    width: calc(100% - 20px);
+}
+
+/deep/ .datatable-header-cell-label,
+/deep/ .datatable-body-cell-label>span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+/deep/ .datatable-icon-up,
+/deep/ .datatable-icon-down {
+    display: inline-flex;
+    height: 30px;
+    padding: 7px;
+}
+
+/deep/ .datatable-icon-up:before {
+    font-family: 'Material Icons';
+    font-size: 16px;
+    content: "keyboard_arrow_up";
+}
+
+/deep/ .datatable-icon-down:before {
+    font-family: 'Material Icons';
+    font-size: 16px;
+    content: "keyboard_arrow_down";
+}
+
+/deep/ .datatable-body-cell {
+    border-right: 1px dashed $black-87-opacity;
+    line-height: 20px !important;
+    padding: 2px 5px;
+}
+
+/deep/ .datatable-body-row.active .datatable-row-group {
+    background-color: mat-color($primary);
+    color: #fafafa;
+}
+
+/deep/ .datatable-body-row.heat-1 .datatable-row-group {
+    color: #01579b; // light-blue-900
+}
+
+/deep/ .datatable-body-row.heat-2 .datatable-row-group {
+    color: #1a237e; // indigo-900
+}
+
+/deep/ .datatable-body-row.heat-3 .datatable-row-group {
+    color: #4a148c; // purple-900
+}
+
+/deep/ .datatable-body-row.heat-4 .datatable-row-group {
+    color: #b71c1c; // red-900
+}
+
+/deep/ .datatable-body-row.heat-5 .datatable-row-group {
+    color: #e65100; // orange-900
+}
+
+/deep/ .datatable-body-row.active.heat-1 .datatable-row-group {
+    background-color: #29b6f6; // light-blue-400
+}
+
+/deep/ .datatable-body-row.active.heat-2 .datatable-row-group {
+    background-color: #5c6bc0; // indigo-400
+}
+
+/deep/ .datatable-body-row.active.heat-3 .datatable-row-group {
+    background-color: #ab47bc; // purple-400
+}
+
+/deep/ .datatable-body-row.active.heat-4 .datatable-row-group {
+    background-color: #ef5350; // red-400
+}
+
+/deep/ .datatable-body-row.active.heat-5 .datatable-row-group {
+    background-color: #ffa726; // orange-400
+}
+
+/deep/ .datatable-body {
+    height: 100%;
+}
+
+/deep/ .mat-drawer-content {
+    height: 100%;
+}
+
+/deep/ .color-field:before {
+    border: 2px solid black;
+    border-radius: 16px;
+    content: '';
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+.skinny {
+    font-size: 14px;
+
+    /deep/ .datatable-row-odd {
+        background-color: mat-color($accent);
+    }
+
+    /deep/ .datatable-header-cell {
+        height: 20px;
+    }
+
+    /deep/ .datatable-header-cell-wrapper {
+        padding: 2px 5px;
+    }
+
+    /deep/ .datatable-icon-up,
+    /deep/ .datatable-icon-down {
+        height: 20px;
+        margin-right: 0;
+        padding: 2px 7px;
+    }
+
+    /deep/ .datatable-header-cell,
+    /deep/ .datatable-body-cell {
+        line-height: 16px !important;
+    }
+
+    /deep/ .datatable-body-cell {
+        border-right-style: solid;
+    }
+}
+
+.selectable {
+
+    /deep/ .datatable-body-row:hover .datatable-row-group,
+    /deep/ .datatable-body-row.active:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.active:hover .datatable-row-group {
+        background-color: $accent-bright-opacity;
+        color: $black-87-opacity;
+        cursor: pointer;
+    }
+
+    /deep/ .datatable-body-row.heat-1:hover .datatable-row-group,
+    /deep/ .datatable-body-row.active.heat-1:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.heat-1:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.active.heat-1:hover .datatable-row-group {
+        background-color: #29b6f6; // light-blue-400
+    }
+
+    /deep/ .datatable-body-row.heat-2:hover .datatable-row-group,
+    /deep/ .datatable-body-row.active.heat-2:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.heat-2:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.active.heat-2:hover .datatable-row-group {
+        background-color: #5c6bc0; // indigo-400
+    }
+
+    /deep/ .datatable-body-row.heat-3:hover .datatable-row-group,
+    /deep/ .datatable-body-row.active.heat-3:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.heat-3:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.active.heat-3:hover .datatable-row-group {
+        background-color: #ab47bc; // purple-400
+    }
+
+    /deep/ .datatable-body-row.heat-4:hover .datatable-row-group,
+    /deep/ .datatable-body-row.active.heat-4:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.heat-4:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.active.heat-4:hover .datatable-row-group {
+        background-color: #ef5350; // red-400
+    }
+
+    /deep/ .datatable-body-row.heat-5:hover .datatable-row-group,
+    /deep/ .datatable-body-row.active.heat-5:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.heat-5:hover .datatable-row-group,
+    &.skinny /deep/ .datatable-body-row.active.heat-5:hover .datatable-row-group {
+        background-color: #ffa726; // orange-400
+    }
+}
