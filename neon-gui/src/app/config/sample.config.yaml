@@ -1,0 +1,161 @@
+dashboard:
+  translationKeys:
+    google: API_KEY
+
+datasets:
+  -
+    name: Earthquakes
+    datastore: mongo
+    hostname: localhost
+    databases:
+      -
+        name: test
+        prettyName: Test
+        tables:
+          -
+            name: earthquakes
+            prettyName: Earthquakes
+            fields:
+              -
+                columnName: _id
+                prettyName: Database ID
+              -
+                columnName: time
+                prettyName: Time
+              -
+                columnName: latitude
+                prettyName: Latitude
+              -
+                columnName: longitude
+                prettyName: Longitude
+              -
+                columnName: depth
+                prettyName: Depth
+              -
+                columnName: mag
+                prettyName: Magnitude
+              -
+                columnName: magType
+                prettyName: Magnitude Type
+              -
+                columnName: nst
+                prettyName: NST
+              -
+                columnName: gap
+                prettyName: Gap
+              -
+                columnName: dmin
+                prettyName: DMIN
+              -
+                columnName: rms
+                prettyName: RMS
+              -
+                columnName: net
+                prettyName: Net
+              -
+                columnName: id
+                prettyName: ID
+              -
+                columnName: updated
+                prettyName: Updated
+              -
+                columnName: place
+                prettyName: Place
+              -
+                columnName: type
+                prettyName: Type
+            mappings:
+              date: time
+              latitude: latitude
+              longitude: longitude
+              id: _id
+
+layouts:
+  default:
+    -
+      sizex: 10
+      sizey: 6
+      type: timeline
+      bindings:
+          database: test
+          table: earthquakes
+          dateField: time
+    -
+      sizex: 10
+      sizey: 8
+      type: scatterPlot
+      bindings:
+          database: test
+          table: earthquakes
+          xField: longitude
+          yField: latitude
+          limit: 200
+    -
+      sizex: 10
+      sizey: 8
+      type: map
+      bindings:
+          limit: 1000
+          layers:
+              -
+                title: MagType
+                database: test
+                table: earthquakes
+                latitudeField: latitude
+                longitudeField: longitude
+                dateField: time
+                sizeField: mag
+                colorField: magType
+              -
+                title: Net
+                database: test
+                table: earthquakes
+                latitudeField: latitude
+                longitudeField: longitude
+                colorField: net
+                sizeField: mag
+                dateField: date
+    -
+      sizex: 10
+      sizey: 6
+      type: barChart
+      bindings:
+          database: test
+          table: earthquakes
+          dataField: magType
+          aggregation: count
+    -
+      sizex: 20
+      sizey: 6
+      type: lineChart
+      bindings:
+          database: test
+          table: earthquakes
+          dateField: time
+          groupField: type
+          aggregation: count
+    -
+      sizex: 10
+      sizey: 6
+      type: dataTable
+      bindings:
+          database: test
+          table: earthquakes
+          sortField: time
+          limit: 20
+    -
+      sizex: 10
+      sizey: 4
+      type: textCloud
+      bindings:
+          database: test
+          table: earthquakes
+          dataField: magType
+    -
+      sizex: 10
+      sizey: 4
+      type: filterBuilder
+      bindings:
+          database: test
+          table: earthquakes
+
